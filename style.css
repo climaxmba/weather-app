@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: url(00001.jpg) no-repeat;
+    background-size: cover;
+}
+
+#search-form-contr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: #80808080;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form svg {
+    height: 1.2rem;
+    fill: white;
+}
+input {
+    color: white;
+    padding: 3px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+input::placeholder {
+    color: #ffffff80;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+form button {
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
