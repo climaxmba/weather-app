@@ -35,8 +35,10 @@ const displayController = (() => {
   function _upDateAreasList() {
     // Update areas list
   }
-  function _queryAddress() {
-    // Query address
+  function _queryAddress(e) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target.form));
+    pubSub.publish(events.dataSearched, data.q);
   }
   function _swithUnits() {
     // Switch units

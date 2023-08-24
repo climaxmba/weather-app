@@ -3,11 +3,10 @@ import events from "./pubSubEvents.js";
 import ft from "format-time";
 
 const weather = (() => {
-    pubSub.subscribe(events.dataSearched, _getParsedData);
+    pubSub.subscribe(events.dataSearched, _searchData);
     
   async function init() {
-    const data = await _getParsedData("Miami");
-    pubSub.publish(events.dataRecieved, data);
+    _searchData("Moscow");
   }
 
   async function _getCurrentData(location) {
@@ -31,12 +30,12 @@ const weather = (() => {
   async function _getParsedData(location) {
     const result = await _getCurrentData(location);
     const currentData = result.current,
-      locationData = result.location;
+      locationData = result.location,
+      emptyContent = "_ _ _ ";
 
-      console.log(result)
     return {
-      city: locationData.name,
-      country: `${locationData.region}, ${locationData.country}`,
+      city: locationData.name || emptyContent,
+      country: `${locationData.region || emptyContent}, ${locationData.country || emptyContent}`,
       time: ft.getFormattedTime(locationData.localtime.split(" ")[1]),
       date: new Date(locationData.localtime.split(" ")[0]).toLocaleDateString(),
       metricTemp: `${currentData.temp_c} ℃`,
@@ -54,6 +53,11 @@ const weather = (() => {
       metricGust: `${currentData.gust_kph} kph`,
       imperialGust: `${currentData.gust_mph} mph`,
     };
+  }
+
+  async function _searchData(query) {
+    const data = await _getParsedData(query);
+    pubSub.publish(events.dataRecieved, data);
   }
 
   return { init };
