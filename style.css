@@ -110,6 +110,7 @@ form button {
 }
 #time {
     font-size: x-large;
+    text-transform: lowercase;
 }
 /* Current weather data */
 #curr-weather-contr {
