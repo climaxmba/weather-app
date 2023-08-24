@@ -2,9 +2,10 @@ import pubSub from "./pubSub.js";
 import events from "./pubSubEvents.js";
 
 const weather = (() => {
-  async function init() {
     pubSub.subscribe(events.dataSearched, _getParsedData);
-    const data = await _getParsedData("London");
+    
+  async function init() {
+    const data = await _getParsedData("Abuja");
     pubSub.publish(events.dataRecieved, data);
   }
 
@@ -28,20 +29,21 @@ const weather = (() => {
 
   async function _getParsedData(location) {
     const result = await _getCurrentData(location);
-    const currentData = result.currentData,
+    const currentData = result.current,
       locationData = result.location;
 
+      console.log(result)
     return {
       city: locationData.name,
-      country: locationData.country,
+      country: `${locationData.region}, ${locationData.country}`,
       time: locationData.localtime.split(" ")[1],
       date: locationData.localtime.split(" ")[0],
       metricTemp: `${currentData.temp_c}℃`,
       imperialTemp: `${currentData.temp_f}℉`,
       icon: currentData.condition.icon,
       conditionText: currentData.condition.text,
-      metricWind: `${currentData.wind_kph} ${currentData.wind_dir}`,
-      imperialWind: `${currentData.wind_mph} ${currentData.wind_dir}`,
+      metricWind: `${currentData.wind_kph}kph ${currentData.wind_dir}`,
+      imperialWind: `${currentData.wind_mph}mph ${currentData.wind_dir}`,
       metricPressure: `${currentData.pressure_mb} mb`,
       imperialPressure: `${currentData.pressure_in} in`,
       humidity: currentData.humidity,

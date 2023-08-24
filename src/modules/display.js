@@ -2,6 +2,8 @@ import pubSub from "./pubSub.js";
 import events from "./pubSubEvents.js";
 
 const displayController = (() => {
+  pubSub.subscribe(events.dataRecieved, _renderData);
+
   // Cache DOM
   const searchBox = document.querySelector("[data-js-name='search-box']"),
     searchBtn = document.querySelector("[data-js-name='search']"),
@@ -38,6 +40,21 @@ const displayController = (() => {
   }
   function _swithUnits() {
     // Switch units
+  }
+  function _renderData(data, isImperial = false) {
+    city.textContent = data.city;
+    country.textContent = data.country;
+    time.textContent = data.time;
+    date.textContent = data.date;
+    temp.textContent = isImperial ? data.imperialTemp : data.metricTemp;
+    icon.src = data.icon;
+    condition.textContent = data.conditionText;
+    wind.textContent = isImperial ? data.imperialWind : data.metricWind;
+    pressure.textContent = isImperial ? data.imperialPressure : data.metricPressure;
+    humidity.textContent = data.humidity;
+    visibility.textContent = isImperial ? data.imperialVisibility : data.metricVisibility;
+    uv.textContent = data.uv;
+    gust.textContent = isImperial ? data.imperialGust : data.metricGust;
   }
 
   return { init };
