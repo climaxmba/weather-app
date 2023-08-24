@@ -1,11 +1,12 @@
 import pubSub from "./pubSub.js";
 import events from "./pubSubEvents.js";
+import ft from "format-time";
 
 const weather = (() => {
     pubSub.subscribe(events.dataSearched, _getParsedData);
     
   async function init() {
-    const data = await _getParsedData("Abuja");
+    const data = await _getParsedData("Miami");
     pubSub.publish(events.dataRecieved, data);
   }
 
@@ -36,22 +37,22 @@ const weather = (() => {
     return {
       city: locationData.name,
       country: `${locationData.region}, ${locationData.country}`,
-      time: locationData.localtime.split(" ")[1],
-      date: locationData.localtime.split(" ")[0],
-      metricTemp: `${currentData.temp_c}℃`,
-      imperialTemp: `${currentData.temp_f}℉`,
+      time: ft.getFormattedTime(locationData.localtime.split(" ")[1]),
+      date: new Date(locationData.localtime.split(" ")[0]).toLocaleDateString(),
+      metricTemp: `${currentData.temp_c} ℃`,
+      imperialTemp: `${currentData.temp_f} ℉`,
       icon: currentData.condition.icon,
       conditionText: currentData.condition.text,
-      metricWind: `${currentData.wind_kph}kph ${currentData.wind_dir}`,
-      imperialWind: `${currentData.wind_mph}mph ${currentData.wind_dir}`,
+      metricWind: `${currentData.wind_kph} kph, ${currentData.wind_dir}`,
+      imperialWind: `${currentData.wind_mph} mph, ${currentData.wind_dir}`,
       metricPressure: `${currentData.pressure_mb} mb`,
       imperialPressure: `${currentData.pressure_in} in`,
       humidity: currentData.humidity,
-      metricVisibility: `${currentData.vis_km}km`,
-      imperialVisibility: `${currentData.vis_miles}miles`,
+      metricVisibility: `${currentData.vis_km} km`,
+      imperialVisibility: `${currentData.vis_miles} miles`,
       uv: currentData.uv,
-      metricGust: `${currentData.gust_kph}kph`,
-      imperialGust: `${currentData.gust_mph}mph`,
+      metricGust: `${currentData.gust_kph} kph`,
+      imperialGust: `${currentData.gust_mph} mph`,
     };
   }
 
