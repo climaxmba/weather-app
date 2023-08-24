@@ -1,3 +1,6 @@
+import pubSub from "./pubSub.js";
+import events from "./pubSubEvents.js";
+
 const displayController = (() => {
   // Cache DOM
   const searchBox = document.querySelector("[data-js-name='search-box']"),
@@ -18,7 +21,7 @@ const displayController = (() => {
     gust = document.querySelector("[data-js-name='gust']");
 
   function init() {
-    // init
+    _addEvents();
   }
 
   function _addEvents() {

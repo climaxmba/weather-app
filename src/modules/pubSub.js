@@ -16,4 +16,4 @@ const pubSub = (function () {
     return { subscribe, unSubscribe, publish };
   })();
 
-  export default pubSub;
+export default pubSub;
