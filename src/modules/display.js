@@ -22,6 +22,8 @@ const displayController = (() => {
     uv = document.querySelector("[data-js-name='uv']"),
     gust = document.querySelector("[data-js-name='gust']");
 
+  let userChoiceImperial = false, cachedData;
+
   function init() {
     _addEvents();
   }
@@ -41,22 +43,35 @@ const displayController = (() => {
     pubSub.publish(events.dataSearched, data.q);
   }
   function _swithUnits() {
-    // Switch units
+    userChoiceImperial = !userChoiceImperial;
+    _renderData(cachedData)
   }
-  function _renderData(data, isImperial = false) {
+  function _renderData(data, isImperial = userChoiceImperial) {
+    cachedData = data;
+
     city.textContent = data.city;
     country.textContent = data.country;
     time.textContent = data.time;
     date.textContent = data.date;
-    temp.textContent = isImperial ? data.imperialTemp : data.metricTemp;
     icon.src = data.icon;
     condition.textContent = data.conditionText;
-    wind.textContent = isImperial ? data.imperialWind : data.metricWind;
-    pressure.textContent = isImperial ? data.imperialPressure : data.metricPressure;
     humidity.textContent = data.humidity;
-    visibility.textContent = isImperial ? data.imperialVisibility : data.metricVisibility;
     uv.textContent = data.uv;
-    gust.textContent = isImperial ? data.imperialGust : data.metricGust;
+
+    // Imperial fields
+    if (isImperial) {
+      temp.textContent = data.imperialTemp;
+      wind.textContent = data.imperialWind;
+      pressure.textContent = data.imperialPressure;
+      visibility.textContent = data.imperialVisibility;
+      gust.textContent = data.imperialGust;
+    } else {
+      temp.textContent = data.metricTemp;
+      wind.textContent = data.metricWind;
+      pressure.textContent = data.metricPressure;
+      visibility.textContent = data.metricVisibility;
+      gust.textContent = data.metricGust;
+    }
   }
 
   return { init };
