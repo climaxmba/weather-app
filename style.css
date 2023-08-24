@@ -85,17 +85,20 @@ form button {
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
 }
 #current > * {
     flex-wrap: wrap;
+    padding: 1.5rem 0;
+}
+#current > *:not(:first-child) {
+    border-top: 2px solid;
 }
 /* Location & time */
 #location-time-contr {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 1rem;
+    display: grid;
+    grid-template: auto auto / auto auto;
+    gap: 6px 1rem;
+    align-items: center;
 }
 #city {
     font-size: 2.5rem;
@@ -112,7 +115,13 @@ form button {
 #curr-weather-contr {
     display: flex;
     flex-direction: column;
-    gap: 2em;
+    gap: 1em;
+}
+#temp-contr {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
 }
 #temp {
     font-size: x-large;
@@ -120,7 +129,11 @@ form button {
 #weather-condition-contr {
     display: flex;
     gap: 1rem;
+    align-items: center;
     justify-content: space-between;
+}
+#weather-condition-contr div {
+    font-size: x-large;
 }
 #details-contr {
     display: grid;
@@ -129,7 +142,8 @@ form button {
 }
 .heading-text {
     font-size: x-large;
+    grid-column: 1 / -1;
 }
-#details-contr > div:nth-child(2n + 4) {
+#details-contr > div:nth-child(2n + 3) {
     font-weight: bold;
 }
