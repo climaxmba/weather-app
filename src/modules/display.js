@@ -40,7 +40,7 @@ const displayController = (() => {
   function _queryAddress(e) {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target.form));
-    pubSub.publish(events.dataSearched, data.q);
+    if (data.q) pubSub.publish(events.dataSearched, data.q);
   }
   function _swithUnits() {
     userChoiceImperial = !userChoiceImperial;
