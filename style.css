@@ -89,6 +89,13 @@ form button {
     justify-content: space-between;
     gap: 1rem;
 }
+#msg {
+    color: orange;
+    font-weight: bold;
+}
+#msg::before {
+    content: "❌ ";
+}
 
 /* Current weather display */
 #current {
@@ -98,6 +105,7 @@ form button {
     border: 1.8px solid;
     position: relative;
     min-width: 280px;
+    margin-bottom: 10rem;
 }
 #current > *:not(#loading-contr) {
     flex-wrap: wrap;
