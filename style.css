@@ -6,25 +6,12 @@
 }
 
 body {
-    background: url(00001.jpg) no-repeat;
-    background-size: cover;
-    backdrop-filter: brightness(0.5);
-    height: 125vh;
     margin: 0;
-}
-
-#content {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    align-items: center;
-    height: 100%;
-    background: inherit;
 }
 
 /* Utilities */
 .blurry-bg {
-    background: #75757550;
+    background: #00000030;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
@@ -41,10 +28,21 @@ body {
     background-color: transparent;
 }
 
+#content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    height: 100%;
+    background: url(00001.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
 /* City input */
 #search-form-contr {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
     margin-top: 2rem;
 }
@@ -66,6 +64,7 @@ form svg {
 }
 input {
     padding: 3px;
+    height: 2rem;
     border: none;
     outline: none;
     background-color: transparent;
@@ -80,6 +79,16 @@ form button {
     border: none;
     background-color: transparent;
 }
+#msg-box:not(.active) {
+    display: none;
+}
+#msg-box {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
 
 /* Current weather display */
 #current {
@@ -88,6 +97,7 @@ form button {
     flex-direction: column;
     border: 1.8px solid;
     position: relative;
+    min-width: 280px;
 }
 #current > *:not(#loading-contr) {
     flex-wrap: wrap;
@@ -157,7 +167,7 @@ form button {
     display: none;
 }
 #loading-contr {
-    background-color: #000000c0;
+    background-color: #00000080;
     border: none !important;
     position: absolute;
     top: 0;
