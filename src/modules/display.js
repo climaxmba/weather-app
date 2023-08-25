@@ -39,7 +39,11 @@ const displayController = (() => {
   }
   function _queryAddress(e) {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.target.form));
+
+    const form = e.target.form;
+    form.querySelector("input").value = null;
+    const data = Object.fromEntries(new FormData(form));
+
     if (data.q) pubSub.publish(events.dataSearched, data.q);
   }
   function _switchUnits() {
