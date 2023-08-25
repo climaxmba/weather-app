@@ -22,7 +22,10 @@ const displayController = (() => {
     visibility = document.querySelector("[data-js-name='visibility']"),
     uv = document.querySelector("[data-js-name='uv']"),
     gust = document.querySelector("[data-js-name='gust']"),
-    loading = document.querySelector("[data-js-name='loading']");
+    loading = document.querySelector("[data-js-name='loading']"),
+    msgBox = document.querySelector("[data-js-name='msg-box']"),
+    msgText = document.querySelector("[data-js-name='msg-text']"),
+    cancelMsg = document.querySelector("[data-js-name='cancel-msg']");
 
   let userChoiceImperial = false, cachedData;
 
@@ -34,6 +37,7 @@ const displayController = (() => {
     searchBox.addEventListener("input", _upDateAreasList);
     searchBtn.addEventListener("click", _queryAddress);
     unitsSwitch.addEventListener("click", _switchUnits);
+    cancelMsg.addEventListener("click", _removeMsg);
   }
 
   function _upDateAreasList() {
@@ -93,8 +97,17 @@ const displayController = (() => {
   function _displayLoadingScreen() {
     loading.classList.add("active");
   }
-  function _removeloadingScreen() {
+  function _removeloadingScreen(msg) {
+    if (msg) _displayMsg(msg);
     loading.classList.remove("active");
+  }
+  function _displayMsg(msg) {
+    msgText.textContent = msg;
+    msgBox.classList.add("active");
+    setTimeout(_removeMsg, 8000);
+  }
+  function _removeMsg() {
+    msgBox.classList.remove("active");
   }
 
   return { init };

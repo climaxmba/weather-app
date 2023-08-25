@@ -7,7 +7,7 @@ const weather = (() => {
 
   async function init() {
     _getUserCoord()
-      .then((ipData) => _searchData(`${ipData.latitude},${ipData.longitude}`))
+      .then((ipData) => _searchData(`${ipData.lat},${ipData.lon}`))
       .catch((err) => {
         console.log(err);
         _searchData("Texas");
@@ -16,11 +16,11 @@ const weather = (() => {
 
   async function _getUserCoord() {
     try {
-      const response = await fetch("https://freeipapi.com/api/json", { mode: "cors" });
+      const response = await fetch("http://ip-api.com/json/", { mode: "cors" });
       const data = await response.json();
       return data;
-    } catch (err) {
-      return Promise.reject("FAILED TO GET USER IP COORDINATES\n");
+    } catch {
+      return Promise.reject("FAILED TO GET USER IP COORDINATES");
     }
   }
 
@@ -74,7 +74,7 @@ const weather = (() => {
         imperialGust: `${currentData.gust_mph} mph`,
       };
     } catch {
-      return Promise.reject("FAILED TO PARSE DATA\n");
+      return Promise.reject("Could not load data!");
     }
   }
 
@@ -83,7 +83,7 @@ const weather = (() => {
       const data = await _getParsedData(query);
       pubSub.publish(events.dataRecieved, data);
     } catch (err) {
-      console.log(err);
+      console.log(`weatherHandler: ${err}`);
       pubSub.publish(events.searchFailed, err);
     }
   }
