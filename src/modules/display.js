@@ -41,10 +41,12 @@ const displayController = (() => {
     e.preventDefault();
 
     const form = e.target.form;
+    const input = form.querySelector("input");
     const data = Object.fromEntries(new FormData(form));
 
     if (data.q) pubSub.publish(events.dataSearched, data.q);
-    form.querySelector("input").value = null;
+    input.value = null;
+    input.blur();
   }
   function _switchUnits() {
     if (cachedData) {
