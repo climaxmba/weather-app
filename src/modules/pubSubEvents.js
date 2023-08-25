@@ -1,6 +1,7 @@
 const events = {
     dataRecieved: "dataRecieved",
-    dataSearched: "dataSearched"
+    dataSearched: "dataSearched",
+    searchFailed: "searchFailed"
 }
 
 export default events;

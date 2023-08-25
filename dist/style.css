@@ -96,19 +96,6 @@ form button {
 #current > *:not(:first-child) {
     border-top: 2px solid;
 }
-#loading-contr {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #000000c0;
-    border: none !important;
-    display: none;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
 /* Location & time */
 #location-time-contr {
     display: grid;
@@ -163,4 +150,58 @@ form button {
 }
 #details-contr > div:nth-child(2n + 3) {
     font-weight: bold;
+}
+
+/* Loading component */
+#loading-contr:not(.active) {
+    display: none;
+}
+#loading-contr {
+    background-color: #000000c0;
+    border: none !important;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+#loading-contr > div {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 150px;
+}
+#loading-contr .rings {
+    position: absolute;
+    left: 50%;
+    height: 80px;
+    border-style: solid;
+    border-radius: 50%;
+}
+#loading-contr.active .rings:first-child {
+    border-width: 2px;
+    animation: spin 2s linear infinite;
+}
+#loading-contr.active .rings:nth-child(2) {
+    border-width: 4px;
+    opacity: 0.5;
+    animation: spin-opp 1.5s linear infinite;
+}
+#loading-contr.active .rings:nth-child(3) {
+    border-width: 3px;
+    animation: spin 1.5s linear infinite;
+}
+#loading-text {
+    margin-top: 120px;
+    text-align: center;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@keyframes spin-opp {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
 }

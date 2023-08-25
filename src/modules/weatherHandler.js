@@ -16,7 +16,7 @@ const weather = (() => {
 
   async function _getUserCoord() {
     try {
-      const response = await fetch("https://freeipapi.com/api/json");
+      const response = await fetch("https://freeipapi.com/api/json", { mode: "cors" });
       const data = await response.json();
       return data;
     } catch (err) {
@@ -84,6 +84,7 @@ const weather = (() => {
       pubSub.publish(events.dataRecieved, data);
     } catch (err) {
       console.log(err);
+      pubSub.publish(events.searchFailed, err);
     }
   }
 

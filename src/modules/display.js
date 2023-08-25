@@ -3,6 +3,7 @@ import events from "./pubSubEvents.js";
 
 const displayController = (() => {
   pubSub.subscribe(events.dataRecieved, _renderData);
+  pubSub.subscribe(events.searchFailed, _removeloadingScreen);
 
   // Cache DOM
   const searchBox = document.querySelector("[data-js-name='search-box']"),
@@ -20,7 +21,8 @@ const displayController = (() => {
     humidity = document.querySelector("[data-js-name='humidity']"),
     visibility = document.querySelector("[data-js-name='visibility']"),
     uv = document.querySelector("[data-js-name='uv']"),
-    gust = document.querySelector("[data-js-name='gust']");
+    gust = document.querySelector("[data-js-name='gust']"),
+    loading = document.querySelector("[data-js-name='loading']");
 
   let userChoiceImperial = false, cachedData;
 
@@ -44,7 +46,10 @@ const displayController = (() => {
     const input = form.querySelector("input");
     const data = Object.fromEntries(new FormData(form));
 
-    if (data.q) pubSub.publish(events.dataSearched, data.q);
+    if (data.q) {
+      _displayLoadingScreen();
+      pubSub.publish(events.dataSearched, data.q);
+    }
     input.value = null;
     input.blur();
   }
@@ -54,6 +59,7 @@ const displayController = (() => {
       _renderData(cachedData);
     }
   }
+
   function _renderData(data, isImperial = userChoiceImperial) {
     cachedData = data;
 
@@ -80,6 +86,15 @@ const displayController = (() => {
       visibility.textContent = data.metricVisibility;
       gust.textContent = data.metricGust;
     }
+
+    _removeloadingScreen();
+  }
+
+  function _displayLoadingScreen() {
+    loading.classList.add("active");
+  }
+  function _removeloadingScreen() {
+    loading.classList.remove("active");
   }
 
   return { init };
