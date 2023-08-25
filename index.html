@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Weather App</title>
 </head>
+
 <body>
     <div id="content">
         <div id="search-form-contr" class="rounded-border blurry-bg">
@@ -17,9 +19,8 @@
                 <button data-js-name="search" type="submit" class="clickable">Search</button>
             </form>
         </div>
-        
+
         <div id="current" class="rounded-border blurry-bg">
-            <div>Weather</div>
             <div id="location-time-contr">
                 <div data-js-name="city" id="city">Bolton</div>
                 <div data-js-name="time" id="time">15:00</div>
@@ -53,11 +54,17 @@
                 <div>Gust:</div>
                 <div data-js-name="gust">8.6km/h</div>
             </div>
-            <div id="loading-contr" class="rounded-border">
-                <div id="loading-text">Loading data...</div>
+            <div data-js-name="loading" id="loading-contr" class="rounded-border active">
+                <div>
+                    <div class="rings"></div>
+                    <div class="rings"></div>
+                    <div class="rings"></div>
+                    <div id="loading-text">Loading data</div>
+                </div>
             </div>
         </div>
     </div>
     <script src="bundle.js"></script>
 </body>
+
 </html>
