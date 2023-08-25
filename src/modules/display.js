@@ -31,7 +31,7 @@ const displayController = (() => {
   function _addEvents() {
     searchBox.addEventListener("input", _upDateAreasList);
     searchBtn.addEventListener("click", _queryAddress);
-    unitsSwitch.addEventListener("click", _swithUnits);
+    unitsSwitch.addEventListener("click", _switchUnits);
   }
 
   function _upDateAreasList() {
@@ -42,9 +42,11 @@ const displayController = (() => {
     const data = Object.fromEntries(new FormData(e.target.form));
     if (data.q) pubSub.publish(events.dataSearched, data.q);
   }
-  function _swithUnits() {
-    userChoiceImperial = !userChoiceImperial;
-    _renderData(cachedData)
+  function _switchUnits() {
+    if (cachedData) {
+      userChoiceImperial = !userChoiceImperial;
+      _renderData(cachedData);
+    }
   }
   function _renderData(data, isImperial = userChoiceImperial) {
     cachedData = data;
