@@ -4,6 +4,7 @@ import ft from "format-time";
 
 const weather = (() => {
   pubSub.subscribe(events.dataSearched, _searchData);
+  pubSub.subscribe(events.dataInputed, _getAreasList);
 
   async function init() {
     _getUserCoord()
@@ -12,6 +13,29 @@ const weather = (() => {
         console.log(err);
         _searchData("Texas");
       });
+  }
+
+  async function _searchData(query) {
+    try {
+      const data = await _getParsedData(query);
+      pubSub.publish(events.dataRecieved, data);
+    } catch (err) {
+      console.log(`weatherHandler: ${err}`);
+      pubSub.publish(events.searchFailed, err);
+    }
+  }
+  async function _getAreasList(input) {
+    try {
+      const response = await fetch(`https://geocode.maps.co/search?q=${input}`, { mode: "cors" });
+      if (response.ok) {
+        const data = await response.json();
+        pubSub.publish(events.areasListRecieved, data);
+      } else {
+        throw new Error("getAreasList: Failed!");
+      }
+    } catch (err) {
+      return Promise.reject(err);
+    }
   }
 
   async function _getUserCoord() {
@@ -26,7 +50,6 @@ const weather = (() => {
 
   async function _getCurrentData(location) {
     const key = "c52eaecafe624ab6908202749232108";
-    // Geocode https://geocode.maps.co/search?q=
     const url = `https://api.weatherapi.com/v1/current.json?key=${key}&q=${location}`;
     let result, data;
     try {
@@ -75,16 +98,6 @@ const weather = (() => {
       };
     } catch {
       return Promise.reject("Could not load data!");
-    }
-  }
-
-  async function _searchData(query) {
-    try {
-      const data = await _getParsedData(query);
-      pubSub.publish(events.dataRecieved, data);
-    } catch (err) {
-      console.log(`weatherHandler: ${err}`);
-      pubSub.publish(events.searchFailed, err);
     }
   }
 
