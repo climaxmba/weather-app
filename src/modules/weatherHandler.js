@@ -77,9 +77,7 @@ const weather = (() => {
           locationData.country || emptyContent
         }`,
         time: ft.getFormattedTime(locationData.localtime.split(" ")[1]),
-        date: new Date(
-          locationData.localtime.split(" ")[0]
-        ).toLocaleDateString(),
+        date: new Date(locationData.localtime.split(" ")[0]).toDateString(),
         metricTemp: `${currentData.temp_c} °C`,
         imperialTemp: `${currentData.temp_f} °F`,
         icon: currentData.condition.icon,
@@ -90,7 +88,11 @@ const weather = (() => {
         imperialPressure: `${currentData.pressure_in} in`,
         humidity: currentData.humidity,
         metricVisibility: `${currentData.vis_km} km`,
-        imperialVisibility: `${currentData.vis_miles} miles`,
+        imperialVisibility: `${
+          parseInt(currentData.vis_miles) === 1
+            ? `${currentData.vis_miles} mile`
+            : `${currentData.vis_miles} miles`
+        }`,
         uv: currentData.uv,
         metricGust: `${currentData.gust_kph} km/h`,
         imperialGust: `${currentData.gust_mph} miles/h`,
