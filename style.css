@@ -3,7 +3,7 @@
     box-sizing: border-box;
     color: white;
     fill: white;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Open Sans', sans-serif;
+    font-family: 'Roboto', 'Open sans', sans-serif;
 }
 
 body {
@@ -73,12 +73,12 @@ input {
     border: none;
     outline: none;
     font-size: medium;
-    font-weight: lighter;
     background-color: transparent;
     width: clamp(80px, 40vw, 200px);
 }
 input::placeholder {
     color: #ffffff80;
+    font-size: small;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -153,7 +153,7 @@ ul#areas-list {
     flex-direction: column;
     border: 1.8px solid;
     position: relative;
-    min-width: 280px;
+    width: 290px;
     margin-top: 10rem;
     margin-bottom: clamp(10rem, 45vh, 80vh);
 }
@@ -196,7 +196,8 @@ ul#areas-list {
     justify-content: space-between;
 }
 #temp {
-    font-size: x-large;
+    font-size: xx-large;
+    font-weight: bold;
 }
 #weather-condition-contr {
     display: flex;
@@ -206,6 +207,7 @@ ul#areas-list {
 }
 #weather-condition-contr div {
     font-size: x-large;
+    font-weight: 400;
 }
 #details-contr {
     display: grid;
