@@ -44,13 +44,12 @@ const weather = (() => {
       const data = await response.json();
       return data;
     } catch {
-      return Promise.reject("FAILED TO GET USER IP COORDINATES");
+      return Promise.reject("Failed to get user IP coordinates");
     }
   }
 
   async function _getCurrentData(location) {
-    const key = "c52eaecafe624ab6908202749232108";
-    const url = `https://api.weatherapi.com/v1/current.json?key=${key}&q=${location}`;
+    const url = `https://api.weatherapi.com/v1/current.json?key=c52eaecafe624ab6908202749232108&q=${location}`;
     let result, data;
     try {
       result = await fetch(url, { mode: "cors" });
@@ -81,20 +80,20 @@ const weather = (() => {
         date: new Date(
           locationData.localtime.split(" ")[0]
         ).toLocaleDateString(),
-        metricTemp: `${currentData.temp_c} ℃`,
-        imperialTemp: `${currentData.temp_f} ℉`,
+        metricTemp: `${currentData.temp_c} °C`,
+        imperialTemp: `${currentData.temp_f} °F`,
         icon: currentData.condition.icon,
         conditionText: currentData.condition.text,
-        metricWind: `${currentData.wind_kph} kph, ${currentData.wind_dir}`,
-        imperialWind: `${currentData.wind_mph} mph, ${currentData.wind_dir}`,
+        metricWind: `${currentData.wind_kph} km/h, ${currentData.wind_dir}`,
+        imperialWind: `${currentData.wind_mph} miles/h, ${currentData.wind_dir}`,
         metricPressure: `${currentData.pressure_mb} mb`,
         imperialPressure: `${currentData.pressure_in} in`,
         humidity: currentData.humidity,
         metricVisibility: `${currentData.vis_km} km`,
         imperialVisibility: `${currentData.vis_miles} miles`,
         uv: currentData.uv,
-        metricGust: `${currentData.gust_kph} kph`,
-        imperialGust: `${currentData.gust_mph} mph`,
+        metricGust: `${currentData.gust_kph} km/h`,
+        imperialGust: `${currentData.gust_mph} miles/h`,
       };
     } catch {
       return Promise.reject("Could not load data!");
