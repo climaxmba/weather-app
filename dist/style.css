@@ -50,6 +50,8 @@ svg {
     flex-direction: column;
     justify-content: center;
     margin-top: 2rem;
+    position: absolute;
+    z-index: 1;
 }
 form {
     display: flex;
@@ -109,7 +111,10 @@ ul#areas-list {
     list-style: none;
     display: flex;
     flex-direction: column;
+    margin: 0;
     padding-left: 0;
+    width: 300px;
+    align-self: center;
 }
 #areas-list li {
     display: grid;
@@ -148,7 +153,7 @@ ul#areas-list {
     border: 1.8px solid;
     position: relative;
     min-width: 280px;
-    margin-bottom: 10rem;
+    margin: 10rem 0;
 }
 #current > *:not(#loading-contr) {
     flex-wrap: wrap;
