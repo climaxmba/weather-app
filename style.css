@@ -70,11 +70,12 @@ form svg {
 }
 input {
     padding: 3px;
-    height: 2rem;
     border: none;
     outline: none;
+    font-size: medium;
+    font-weight: lighter;
     background-color: transparent;
-    width: clamp(50px, 40vw, 200px);
+    width: clamp(80px, 40vw, 200px);
 }
 input::placeholder {
     color: #ffffff80;
@@ -153,7 +154,8 @@ ul#areas-list {
     border: 1.8px solid;
     position: relative;
     min-width: 280px;
-    margin: 10rem 0;
+    margin-top: 10rem;
+    margin-bottom: clamp(10rem, 45vh, 80vh);
 }
 #current > *:not(#loading-contr) {
     flex-wrap: wrap;
