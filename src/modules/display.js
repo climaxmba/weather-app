@@ -27,7 +27,8 @@ const displayController = (() => {
     loading = document.querySelector("[data-js-name='loading']"),
     msgBox = document.querySelector("[data-js-name='msg-box']"),
     msgText = document.querySelector("[data-js-name='msg-text']"),
-    cancelMsg = document.querySelector("[data-js-name='cancel-msg']");
+    cancelMsg = document.querySelector("[data-js-name='cancel-msg']"),
+    daysContr = document.querySelector("[data-js-name='days-contr']");
 
   let userChoiceImperial = false, cachedData;
 
@@ -98,6 +99,11 @@ const displayController = (() => {
   }
 
   function _renderData(data, isImperial = userChoiceImperial) {
+    _renderCurrentData(data, isImperial);
+    _renderForecastData(data.daysForecast, isImperial);
+    _removeloadingScreen();
+  }
+  function _renderCurrentData(data, isImperial) {
     cachedData = data;
 
     city.textContent = data.city;
@@ -123,8 +129,23 @@ const displayController = (() => {
       visibility.textContent = data.metricVisibility;
       gust.textContent = data.metricGust;
     }
+  }
+  function _renderForecastData(forecast, isImperial) {
+    daysContr.innerHTML = "";
+    forecast.forEach(data => {
+      const node = document.createElement("div");
+      node.className = "days rounded-border";
 
-    _removeloadingScreen();
+      node.innerHTML = `<img src="${data.icon}" alt="weather-icon">
+        <div class="day-date"></div>
+        <div class="day-temp"></div>`;
+      node.querySelector(".day-date").textContent = data.date;
+      node.querySelector(".day-temp").textContent = isImperial
+        ? data.imperialTemp
+        : data.metricTemp;
+
+      daysContr.appendChild(node);
+    })
   }
 
   function _displayLoadingScreen() {

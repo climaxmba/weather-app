@@ -49,7 +49,7 @@ const weather = (() => {
   }
 
   async function _getCurrentData(location) {
-    const url = `https://api.weatherapi.com/v1/current.json?key=c52eaecafe624ab6908202749232108&q=${location}`;
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=c52eaecafe624ab6908202749232108&days=3&q=${location}`;
     let result, data;
     try {
       result = await fetch(url, { mode: "cors" });
@@ -69,6 +69,7 @@ const weather = (() => {
       const result = await _getCurrentData(location);
       const currentData = result.current,
         locationData = result.location,
+        forecast = result.forecast.forecastday,
         emptyContent = "_ _ _ ";
 
       return {
@@ -96,6 +97,26 @@ const weather = (() => {
         uv: currentData.uv,
         metricGust: `${currentData.gust_kph} km/h`,
         imperialGust: `${currentData.gust_mph} miles/h`,
+        daysForecast: [
+          {
+            date: new Date(forecast[0].date).toDateString(),
+            metricTemp: `${forecast[0].day.avgtemp_c} °C`,
+            imperialTemp: `${forecast[0].day.avgtemp_f} °F`,
+            icon: forecast[0].day.condition.icon,
+          },
+          {
+            date: new Date(forecast[1].date).toDateString(),
+            metricTemp: `${forecast[1].day.avgtemp_c} °C`,
+            imperialTemp: `${forecast[1].day.avgtemp_f} °F`,
+            icon: forecast[1].day.condition.icon,
+          },
+          {
+            date: new Date(forecast[2].date).toDateString(),
+            metricTemp: `${forecast[2].day.avgtemp_c} °C`,
+            imperialTemp: `${forecast[2].day.avgtemp_f} °F`,
+            icon: forecast[2].day.condition.icon,
+          },
+        ],
       };
     } catch {
       return Promise.reject("Could not load data!");
