@@ -29,48 +29,103 @@
             </div>
         </div>
 
-        <div id="current" class="rounded-border blurry-bg">
-            <div id="location-time-contr">
-                <div data-js-name="city" id="city">_ _ _</div>
-                <div data-js-name="time" id="time">_ _ _</div>
-                <div data-js-name="country" id="country">_ _ _</div>
-                <div data-js-name="date" id="date">_ _ _</div>
+        <div id="display-contr" class="rounded-border blurry-bg">
+            <input name="display" type="radio" id="disp-curr" checked>
+            <input type="radio" name="display" id="disp-forecast">
+
+            <div id="selections">
+                <label for="disp-curr">Current</label>
+                <label for="disp-forecast">Forecast</label>
+                <div data-js-name="units-switch" class="clickable">Switch units</div>
             </div>
 
-            <div id="curr-weather-contr">
-                <div id="temp-contr">
+            <div id="current">
+                <h2>Current</h2>
+                <div id="location-time-contr">
+                    <div data-js-name="city" id="city">_ _ _</div>
+                    <div data-js-name="time" id="time">_ _ _</div>
+                    <div data-js-name="country" id="country">_ _ _</div>
+                    <div data-js-name="dates" id="dates">_ _ _</div>
+                </div>
+        
+                <div id="curr-weather-contr">
                     <div data-js-name="temp" id="temp">_ _ _</div>
-                    <div data-js-name="units-switch" class="clickable">Switch units</div>
-                </div>
-                <div id="weather-condition-contr">
-                    <div data-js-name="weather-condition">_ _ _</div>
                     <img data-js-name="weather-icon" src="#" alt="weather-icon">
+                    <div data-js-name="weather-condition">_ _ _</div>
+                </div>
+        
+                <div id="details-contr">
+                    <div class="heading-text">More Details</div>
+                    <div>Wind:</div>
+                    <div data-js-name="wind">_ _ _</div>
+                    <div>Pressure:</div>
+                    <div data-js-name="pressure">_ _ _</div>
+                    <div>Humidity:</div>
+                    <div data-js-name="humidity">_ _ _</div>
+                    <div>Visibility:</div>
+                    <div data-js-name="visibility">_ _ _</div>
+                    <div>UV Index:</div>
+                    <div data-js-name="uv">_ _ _</div>
+                    <div>Gust:</div>
+                    <div data-js-name="gust">_ _ _</div>
+                </div>
+                <div data-js-name="loading" id="loading-contr" class="rounded-border active">
+                    <div>
+                        <div class="rings"></div>
+                        <div class="rings"></div>
+                        <div class="rings"></div>
+                        <div id="loading-text">Loading data</div>
+                    </div>
                 </div>
             </div>
+            <div id="forecast">
+                <h2>Days forecast</h2>
 
-            <div id="details-contr">
-                <div class="heading-text">More Details</div>
-                <div>Wind:</div>
-                <div data-js-name="wind">_ _ _</div>
-                <div>Pressure:</div>
-                <div data-js-name="pressure">_ _ _</div>
-                <div>Humidity:</div>
-                <div data-js-name="humidity">_ _ _</div>
-                <div>Visibility:</div>
-                <div data-js-name="visibility">_ _ _</div>
-                <div>UV Index:</div>
-                <div data-js-name="uv">_ _ _</div>
-                <div>Gust:</div>
-                <div data-js-name="gust">_ _ _</div>
-            </div>
-            <div data-js-name="loading" id="loading-contr" class="rounded-border active">
-                <div>
-                    <div class="rings"></div>
-                    <div class="rings"></div>
-                    <div class="rings"></div>
-                    <div id="loading-text">Loading data</div>
+                <div id="days-contr">
+                    <div class="days rounded-border">
+                        <img src="#" alt="weather-icon">
+                        <div class="day-dates">Mon, Aug 20th</div>
+                        <div>20&deg;C</div>
+                    </div>
+                    <div class="days rounded-border">
+                        <img src="#" alt="weather-icon">
+                        <div class="day-dates">Tue, Aug 21st</div>
+                        <div>25&deg;C</div>
+                    </div>
+                    <div class="days rounded-border">
+                        <img src="#" alt="weather-icon">
+                        <div class="day-dates">Wed, Aug 22nd</div>
+                        <div>6&deg;C</div>
+                    </div>
+                    <div class="days rounded-border">
+                        <img src="#" alt="weather-icon">
+                        <div class="day-dates">Thurs, Aug 23rd</div>
+                        <div>20&deg;C</div>
+                    </div>
+                    <div class="days rounded-border">
+                        <img src="#" alt="weather-icon">
+                        <div class="day-dates">Fri, Aug 24th</div>
+                        <div>19&deg;C</div>
+                    </div>
+                </div>
+
+                <div id="hourly">
+                    <div class="heading-text">Hourly</div>
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>4</div>
+                    <div>5</div>
+                    <div>6</div>
+                    <div>7</div>
+                    <div>8</div>
+                    <div>9</div>
+                    <div>10</div>
+                    <div>11</div>
+                    <div>12</div>
                 </div>
             </div>
+        
         </div>
         
         <!-- Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a> -->
