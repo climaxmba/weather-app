@@ -148,7 +148,7 @@ ul#areas-list {
 
 #display-contr {
     border: 1.8px solid;
-    width: 290px;
+    width: 300px;
     margin-top: 10rem;
     margin-bottom: clamp(10rem, 45vh, 80vh);
 }
@@ -163,6 +163,9 @@ ul#areas-list {
 }
 #selections label:hover {
     cursor: pointer;
+}
+#selections > div:last-child {
+    font-size: small;
 }
 input#disp-curr,
 input#disp-forecast {
@@ -194,12 +197,12 @@ input#disp-forecast:checked ~ #selections label[for="disp-forecast"] {
 /* Location & time */
 #location-time-contr {
     display: grid;
-    grid-template: auto auto / auto auto;
-    gap: 6px 1rem;
+    grid-template-columns: auto auto;
+    gap: 3px;
     align-items: center;
 }
 #city {
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 #time-contr {
     display: flex;
@@ -207,7 +210,6 @@ input#disp-forecast:checked ~ #selections label[for="disp-forecast"] {
     gap: 3px;
 }
 #time {
-    font-size: x-large;
     text-transform: lowercase;
 }
 /* Current weather data */
@@ -261,13 +263,21 @@ input#disp-forecast:checked ~ #selections label[for="disp-forecast"] {
     scrollbar-color: #00000080 #00000080;
     scrollbar-width: 1rem;
 }
-.day-dates {
+.day-date {
     font-size: small;
+    font-weight: bold;
 }
 #days-contr > div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
     flex: 0 0 6rem;
     padding: 8px;
     background-color: #00000030;
+}
+#days-contr img {
+    height: 40px;
+    width: 40px;
 }
 #days-contr::-webkit-scrollbar {
     width: 1rem;
