@@ -12,6 +12,7 @@ const displayController = (() => {
     searchBtn = document.querySelector("[data-js-name='search']"),
     areasList = document.querySelector("[data-js-name='areas-list']"),
     city = document.querySelector("[data-js-name='city']"),
+    city2 =document.querySelector("[data-js-name='city2']"),
     country = document.querySelector("[data-js-name='country']"),
     time = document.querySelector("[data-js-name='time']"),
     date = document.querySelector("[data-js-name='date']"),
@@ -110,6 +111,7 @@ const displayController = (() => {
     cachedData = data;
 
     city.textContent = data.city;
+    city2.textContent = `${data.city} | Forecast`;
     country.textContent = data.country;
     time.textContent = data.time;
     date.textContent = data.date;
@@ -181,7 +183,7 @@ const displayController = (() => {
   function _displayMsg(msg) {
     msgText.textContent = msg;
     msgBox.classList.add("active");
-    setTimeout(_removeMsg, 8000);
+    setTimeout(_removeMsg, 3000);
   }
   function _removeMsg() {
     msgBox.classList.remove("active");

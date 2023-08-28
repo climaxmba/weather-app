@@ -69,32 +69,34 @@
                     <div>Gust:</div>
                     <div data-js-name="gust">_ _ _</div>
                 </div>
-                <div data-js-name="loading" id="loading-contr" class="rounded-border active">
-                    <div>
-                        <div class="rings"></div>
-                        <div class="rings"></div>
-                        <div class="rings"></div>
-                        <div id="loading-text">Loading data</div>
-                    </div>
-                </div>
             </div>
             <div id="forecast">
-                <h2>Forecast</h2>
-
+                <h2 data-js-name="city2">Forecast</h2>
                 <div>
                     <h3>Days</h3>
                     <div data-js-name="days-contr" id="days-contr">_ _ _</div>
                 </div>
-
                 <div>
                     <h3>Hourly</h3>
-                    <div data-js-name="hours-contr" id="hours-contr"></div>
+                    <div data-js-name="hours-contr" id="hours-contr">_ _ _</div>
                 </div>
             </div>
-        
+
+            <div data-js-name="loading" id="loading-contr" class="rounded-border active">
+                <div>
+                    <div class="rings"></div>
+                    <div class="rings"></div>
+                    <div class="rings"></div>
+                    <div id="loading-text">Loading data</div>
+                </div>
+            </div>
         </div>
         
-        <!-- Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a> -->
+        <div id="footer">
+            <div>Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a></div>
+            <div id="img-credit">Image by:</div>
+            <div>View <a href="https://github.com/climaxmba/weather-app/">source code</a></div>
+        </div>
     </div>
     <script src="bundle.js"></script>
 </body>
