@@ -245,7 +245,6 @@ input#disp-forecast:checked ~ #selections label[for="disp-forecast"] {
 }
 #disp-forecast:checked ~ #forecast {
     display: flex;
-    gap: 1.5rem;
     flex-direction: column;
 }
 #forecast h2 {
@@ -258,6 +257,7 @@ input#disp-forecast:checked ~ #selections label[for="disp-forecast"] {
     display: flex;
     gap: 0.5rem;
     padding: 1rem 0;
+    margin-bottom: 1rem;
     width: 100%;
     overflow-x: scroll;
     scrollbar-color: #00000080 #00000080;
@@ -279,16 +279,46 @@ input#disp-forecast:checked ~ #selections label[for="disp-forecast"] {
     height: 40px;
     width: 40px;
 }
-#days-contr::-webkit-scrollbar {
+#days-contr::-webkit-scrollbar,
+#hours-contr::-webkit-scrollbar {
     width: 1rem;
 }
-#days-contr::-webkit-scrollbar-track {
+#days-contr::-webkit-scrollbar-track,
+#hours-contr::-webkit-scrollbar-track {
     background-color: #00000030;
     border-radius: 1rem;
 }
-#days-contr::-webkit-scrollbar-thumb {
+#days-contr::-webkit-scrollbar-thumb,
+#hours-contr::-webkit-scrollbar-thumb {
     background-color: #00000030;
     border-radius: 1rem;
+}
+#hours-contr {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 230px;
+    overflow-y: scroll;
+    font-size: small;
+    padding: 6px;
+    padding-left: 0;
+    scrollbar-color: #00000080 #00000080;
+    scrollbar-width: 1rem;
+}
+#hours-contr .hours {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    justify-content: space-between;
+}
+#hours-contr .hours > div:first-child {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+}
+#hours-contr img {
+    height: 32px;
+    width: 32px;
 }
 
 /* Loading component */
