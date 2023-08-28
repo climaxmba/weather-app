@@ -44,8 +44,11 @@ const displayController = (() => {
   }
 
   function _checkInput(e) {
-    if (e.target.value.length >= 3)
+    if (e.target.value.length >= 3) {
       pubSub.publish(events.dataInputed, e.target.value);
+    } else {
+      _removeAreasList();
+    }
   }
   function _updateAreasList(list) {
     areasList.innerHTML = "";
