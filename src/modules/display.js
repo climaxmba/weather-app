@@ -1,5 +1,6 @@
 import pubSub from "./pubSub.js";
 import events from "./pubSubEvents.js";
+import ft from "format-time";
 
 const displayController = (() => {
   pubSub.subscribe(events.dataRecieved, _renderData);
@@ -28,7 +29,8 @@ const displayController = (() => {
     msgBox = document.querySelector("[data-js-name='msg-box']"),
     msgText = document.querySelector("[data-js-name='msg-text']"),
     cancelMsg = document.querySelector("[data-js-name='cancel-msg']"),
-    daysContr = document.querySelector("[data-js-name='days-contr']");
+    daysContr = document.querySelector("[data-js-name='days-contr']"),
+    hoursContr = document.querySelector("[data-js-name='hours-contr']");
 
   let userChoiceImperial = false, cachedData;
 
@@ -101,6 +103,7 @@ const displayController = (() => {
   function _renderData(data, isImperial = userChoiceImperial) {
     _renderCurrentData(data, isImperial);
     _renderForecastData(data.daysForecast, isImperial);
+    _renderHoursData(data.hoursForecast, isImperial);
     _removeloadingScreen();
   }
   function _renderCurrentData(data, isImperial) {
@@ -145,6 +148,25 @@ const displayController = (() => {
         : data.metricTemp;
 
       daysContr.appendChild(node);
+    })
+  }
+  function _renderHoursData(hours, isImperial) {
+    hoursContr.innerHTML = "";
+    hours.forEach(obj => {
+      const node = document.createElement("div");
+      node.className = "hours";
+
+      node.innerHTML = `<div>
+            <div class="time">${ft.getFormattedTime(obj.time.split(" ")[1]).toLowerCase()}</div>
+            <img src="${obj.condition.icon}" alt="weather-icon">
+            <div class="temp"></div>
+        </div>
+        <div class="dates">${new Date(obj.time.split(" ")[0]).toDateString()}</div>`;
+      node.querySelector(".temp").textContent = isImperial
+        ? `${obj.temp_f}°F`
+        : `${obj.temp_c}°C`;
+      
+      hoursContr.appendChild(node);
     })
   }
 

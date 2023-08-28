@@ -70,7 +70,7 @@ const weather = (() => {
       const currentData = result.current,
         locationData = result.location,
         forecast = result.forecast.forecastday,
-        emptyContent = "_ _ _ ";
+        emptyContent = "_ _ _";
 
       return {
         city: locationData.name || emptyContent,
@@ -116,6 +116,11 @@ const weather = (() => {
             imperialTemp: `${forecast[2].day.avgtemp_f} °F`,
             icon: forecast[2].day.condition.icon,
           },
+        ],
+        hoursForecast: [
+          ...forecast[0].hour,
+          ...forecast[1].hour,
+          ...forecast[2].hour,
         ],
       };
     } catch {
