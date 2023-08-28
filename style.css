@@ -1,4 +1,8 @@
 /* General */
+:root {
+    --themefg: orange;
+}
+
 * {
     box-sizing: border-box;
     color: white;
@@ -97,11 +101,10 @@ form button {
     gap: 1rem;
 }
 #msg {
-    color: orange;
-    font-weight: bold;
+    color: var(--themefg);
 }
 #msg::before {
-    content: "❌ ";
+    content: "⚠ ";
 }
 
 /* Areas list */
@@ -150,7 +153,6 @@ ul#areas-list {
     border: 1.8px solid;
     width: 300px;
     margin-top: 10rem;
-    margin-bottom: clamp(10rem, 45vh, 80vh);
 }
 #display-contr h2 {
     margin: 0;
@@ -174,6 +176,7 @@ input#disp-forecast {
 input#disp-curr:checked ~ #selections label[for="disp-curr"],
 input#disp-forecast:checked ~ #selections label[for="disp-forecast"] {
     font-weight: bold;
+    color: var(--themefg);
 }
 /* Current weather display */
 #current {
@@ -373,4 +376,22 @@ input#disp-forecast:checked ~ #selections label[for="disp-forecast"] {
 @keyframes spin-opp {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(-360deg); }
+}
+
+#footer {
+    margin-top: clamp(10rem, 45vh, 80vh);
+    background-color: #202020;
+    font-size: small;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3px 1rem;
+    align-self: stretch;
+    padding: 1rem;
+}
+#footer a {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--themefg);
 }
