@@ -1,5 +1,5 @@
-import weather from "./modules/weatherHandler.js";
+import apiHandler from "./modules/apiHandler.js";
 import displayController from "./modules/display.js";
 
-weather.init();
+apiHandler.init();
 displayController.init();

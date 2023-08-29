@@ -3,7 +3,7 @@ import events from "./pubSubEvents.js";
 import { createClient } from "pexels";
 import ft from "format-time";
 
-const weather = (() => {
+const apiHandler = (() => {
   pubSub.subscribe(events.dataSearched, _searchData);
   pubSub.subscribe(events.dataInputed, _getAreasList);
   let client;
@@ -153,4 +153,4 @@ const weather = (() => {
   return { init };
 })();
 
-export default weather;
+export default apiHandler;
