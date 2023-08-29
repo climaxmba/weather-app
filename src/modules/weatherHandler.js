@@ -11,7 +11,7 @@ const weather = (() => {
   async function init() {
     client = createClient('OGih2ChlxcaKZTW87ixSFht3bZTbbnhHR7QNN688roF9crgxY8cKtNVr');
     _getUserCoord()
-      .then((ipData) => _searchData(`${ipData.lat},${ipData.lon}`))
+      .then((ipData) => _searchData(`${ipData.latitude},${ipData.longitude}`))
       .catch((err) => {
         console.log(err);
         _searchData("Texas");
@@ -43,7 +43,7 @@ const weather = (() => {
 
   async function _getUserCoord() {
     try {
-      const response = await fetch("http://ip-api.com/json/", { mode: "cors" });
+      const response = await fetch("https://freeipapi.com/api/json", { mode: "cors" });
       const data = await response.json();
       return data;
     } catch {
