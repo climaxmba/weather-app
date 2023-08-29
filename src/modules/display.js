@@ -31,7 +31,9 @@ const displayController = (() => {
     msgText = document.querySelector("[data-js-name='msg-text']"),
     cancelMsg = document.querySelector("[data-js-name='cancel-msg']"),
     daysContr = document.querySelector("[data-js-name='days-contr']"),
-    hoursContr = document.querySelector("[data-js-name='hours-contr']");
+    hoursContr = document.querySelector("[data-js-name='hours-contr']"),
+    bg = document.querySelector("[data-js-name='bg']"),
+    imgCredit = document.querySelector("[data-js-name='img-credit']");
 
   let userChoiceImperial = false, cachedData;
 
@@ -119,6 +121,9 @@ const displayController = (() => {
     condition.textContent = data.conditionText;
     humidity.textContent = data.humidity;
     uv.textContent = data.uv;
+    bg.style.backgroundImage = `url(${data.imageData.url})`;
+    imgCredit.innerHTML = `Image by <a href="${data.imageData.photographerURL}" target="_blank"></a> on <a href="${data.imageData.pageURL}" target="_blank">Pexels</a>`;
+    imgCredit.querySelector("a").textContent = data.imageData.photographer;
 
     // Imperial fields
     if (isImperial) {

@@ -1,12 +1,15 @@
 import pubSub from "./pubSub.js";
 import events from "./pubSubEvents.js";
+import { createClient } from "pexels";
 import ft from "format-time";
 
 const weather = (() => {
   pubSub.subscribe(events.dataSearched, _searchData);
   pubSub.subscribe(events.dataInputed, _getAreasList);
-
+  let client;
+  
   async function init() {
+    client = createClient('OGih2ChlxcaKZTW87ixSFht3bZTbbnhHR7QNN688roF9crgxY8cKtNVr');
     _getUserCoord()
       .then((ipData) => _searchData(`${ipData.lat},${ipData.lon}`))
       .catch((err) => {
@@ -67,12 +70,19 @@ const weather = (() => {
   async function _getParsedData(location) {
     try {
       const result = await _getCurrentData(location);
+      const imageData = await _getWeatherImage(`${result.current.condition.text} sky`);
       const currentData = result.current,
         locationData = result.location,
         forecast = result.forecast.forecastday,
         emptyContent = "_ _ _";
 
       return {
+        imageData: {
+          photographer: imageData.photographer,
+          photographerURL: imageData.photographer_url,
+          url: imageData.src.medium,
+          pageURL: imageData.url,
+        },
         city: locationData.name || emptyContent,
         country: `${locationData.region || emptyContent}, ${
           locationData.country || emptyContent
@@ -125,6 +135,18 @@ const weather = (() => {
       };
     } catch {
       return Promise.reject("Could not load data!");
+    }
+  }
+
+  async function _getWeatherImage(query) {
+    try {
+      const data = await client.photos
+        .search({ query, per_page: 1 })
+        .then((photos) => photos.photos[0]);
+      return data;
+    } catch (error) {
+      console.error(error);
+      return Promise.reject("Failed to get background image");
     }
   }
 
