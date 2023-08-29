@@ -6,6 +6,12 @@ Weather App from [TheOdinProject](https://www.theodinproject.com/lessons/node-pa
 - JavaScript error handling with `try` and `catch`.
 - APIs.
 
+## 🙏 Acknowledgment
+- [TheOdinProject](https://www.theodinproject.com/)
+- [WeatherAPI](https://www.weatherapi.com/)
+- [Pexels API](https://www.pexels.com/api/)
+- [FreeIPAPI](https://www.freeipapi.com)
+
 ## 🚀 Usage
 - Click [here](https://climaxmba.github.io/weather-app/) to open in your browser.
 - Search an address, a city, postal code or _coordinates_ in the search box and click '__Search__'.
