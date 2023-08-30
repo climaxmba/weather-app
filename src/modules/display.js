@@ -57,6 +57,7 @@ const displayController = (() => {
     }
   }
   function _updateAreasList(list) {
+    if (!searchBox.value.length) return _removeAreasList();
     areasList.innerHTML = "";
 
     for (let i = 0; i < list.length; i++) {
@@ -197,9 +198,11 @@ const displayController = (() => {
   }
   function _displayAreasList() {
     areasList.classList.add("active");
+    document.body.addEventListener("click", _removeAreasList);
   }
   function _removeAreasList() {
     areasList.classList.remove("active");
+    document.body.removeEventListener("click", _removeAreasList);
   }
 
   return { init };
