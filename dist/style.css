@@ -343,39 +343,49 @@ input#disp-forecast:checked ~ #selections label[for="disp-forecast"] {
     left: 50%;
     transform: translate(-50%, 0);
     width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#rings-contr {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #loading-contr .rings {
-    position: absolute;
-    left: 50%;
-    height: 80px;
     border-style: solid;
     border-radius: 50%;
 }
-#loading-contr.active .rings:first-child {
+#loading-contr.active .rings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 80px;
     border-width: 2px;
-    animation: spin 2s linear infinite;
+    animation: scale 2s ease-in-out infinite;
 }
-#loading-contr.active .rings:nth-child(2) {
+#loading-contr.active .rings > .rings {
+    height: 50px;
+    width: 50px;
     border-width: 4px;
     opacity: 0.5;
-    animation: spin-opp 1.5s linear infinite;
-}
-#loading-contr.active .rings:nth-child(3) {
-    border-width: 3px;
-    animation: spin 1.5s linear infinite;
+    animation: scale-opp 1.8s ease-out infinite;
 }
 #loading-text {
-    margin-top: 120px;
-    text-align: center;
+    margin-top: 1rem;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+@keyframes scale {
+    50% { transform: scale(50%); }
+    100% { transform: scale(100%); }
 }
-@keyframes spin-opp {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(-360deg); }
+@keyframes scale-opp {
+    50% { transform: scale(200%); }
+    100% { transform: scale(100%); }
 }
 
 #footer {
