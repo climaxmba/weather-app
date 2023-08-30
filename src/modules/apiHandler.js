@@ -97,7 +97,7 @@ const apiHandler = (() => {
         imperialWind: `${currentData.wind_mph} miles/h, ${currentData.wind_dir}`,
         metricPressure: `${currentData.pressure_mb} mb`,
         imperialPressure: `${currentData.pressure_in} in`,
-        humidity: currentData.humidity,
+        humidity: `${currentData.humidity}%`,
         metricVisibility: `${currentData.vis_km} km`,
         imperialVisibility: `${
           parseInt(currentData.vis_miles) === 1
