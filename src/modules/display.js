@@ -46,7 +46,7 @@ const displayController = (() => {
     searchBtn.addEventListener("click", _queryAddress);
     unitsSwitch.addEventListener("click", _switchUnits);
     cancelMsg.addEventListener("click", _removeMsg);
-    areasList.addEventListener("click", _queryAreaCoord);
+    areasList.addEventListener("click", _queryArea);
   }
 
   function _checkInput(e) {
@@ -85,7 +85,7 @@ const displayController = (() => {
     input.value = null;
     input.blur();
   }
-  function _queryAreaCoord(e) {
+  function _queryArea(e) {
     if (e.target !== e.currentTarget) {
       _removeAreasList();
       let elem = e.target;
