@@ -160,6 +160,7 @@ ul#areas-list {
 /* Display selections & input */
 #selections {
     display: flex;
+    justify-content: space-between;
     gap: 1rem;
     padding: 1rem;
 }
@@ -201,12 +202,12 @@ input#disp-forecast:checked ~ #selections label[for="disp-forecast"] {
 #location-time-contr {
     display: grid;
     grid-template-columns: auto auto;
-    gap: 3px;
+    gap: 3px 6px;
     align-items: center;
 }
 #city {
     font-weight: bold;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
 }
 #time-contr {
     display: flex;
@@ -313,6 +314,7 @@ input#disp-forecast:checked ~ #selections label[for="disp-forecast"] {
     gap: 4px;
     max-height: 230px;
     overflow-y: scroll;
+    font-weight: 500;
     font-size: small;
     padding: 6px;
     padding-left: 0;
@@ -415,4 +417,14 @@ input#disp-forecast:checked ~ #selections label[for="disp-forecast"] {
     text-decoration: none;
     font-weight: bold;
     color: var(--themefg);
+}
+
+@media (width >= 500px) {
+    #display-contr {
+        width: 380px;
+    }
+    #hours-contr {
+        font-size: medium;
+        padding: 8px;
+    }
 }
