@@ -20,8 +20,8 @@ svg {
 
 /* Utilities */
 .blurry-bg {
-    background: #00000030;
-    backdrop-filter: blur(8px);
+    background: #00000040;
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(8px);
 }
 .rounded-border {
@@ -205,22 +205,29 @@ input#disp-forecast:checked ~ #selections label[for="disp-forecast"] {
     align-items: center;
 }
 #city {
-    font-size: 2rem;
+    font-weight: bold;
+    font-size: 1.8rem;
 }
 #time-contr {
     display: flex;
     flex-direction: column;
     gap: 3px;
 }
+#date {
+    font-weight: bold;
+}
 #time {
     text-transform: lowercase;
+}
+#country {
+    font-size: small;
 }
 /* Current weather data */
 #curr-weather-contr {
     display: grid;
     align-items: center;
     grid-template: auto auto / 1fr 1fr;
-    gap: 1rem;
+    gap: 6px;
 }
 #temp {
     font-size: xx-large;
@@ -230,13 +237,17 @@ input#disp-forecast:checked ~ #selections label[for="disp-forecast"] {
     grid-row: 1 / -1;
     grid-column-start: 2;
 }
+#condition {
+    font-style: italic;
+}
 #details-contr {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px 3px;
 }
 .heading-text {
-    font-size: x-large;
+    font-size: large;
+    font-weight: bold;
     grid-column: 1 / -1;
 }
 #details-contr > div:nth-child(2n + 3) {
