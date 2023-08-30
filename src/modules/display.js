@@ -75,6 +75,7 @@ const displayController = (() => {
 
   function _queryAddress(e) {
     e.preventDefault();
+    _removeAreasList();
 
     const form = e.target.form;
     const input = form.querySelector("input");
