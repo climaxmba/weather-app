@@ -86,6 +86,7 @@ const displayController = (() => {
   }
   function _queryAreaCoord(e) {
     if (e.target !== e.currentTarget) {
+      _removeAreasList();
       let elem = e.target;
       while (!elem.hasAttribute("data-coord")) elem = elem.parentElement;
       _searchData(elem.getAttribute("data-coord"));
