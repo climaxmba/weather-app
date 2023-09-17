@@ -11,6 +11,7 @@ Weather App from [TheOdinProject](https://www.theodinproject.com/lessons/node-pa
 - [WeatherAPI](https://www.weatherapi.com/)
 - [Pexels API](https://www.pexels.com/api/)
 - [FreeIPAPI](https://www.freeipapi.com)
+- [Free Geocoding API](https://geocode.maps.co/)
 
 ## 🚀 Usage
 - Click [here](https://climaxmba.github.io/weather-app/) to open in your browser.
